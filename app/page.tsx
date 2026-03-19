@@ -426,71 +426,157 @@ const Blogs = () => {
 };
 
 const Programs = () => {
+  const [activeRoom, setActiveRoom] = useState(0);
   const rooms = [
     {
       id: "cubs",
       age: "0 – 2 Years",
       title: "Cubs Room",
-      desc: "A warm, gentle haven designed around each baby\u2019s individual rhythms. Soft lighting and sensory materials.",
+      desc: "A warm, gentle haven designed around each baby's individual rhythms. Soft lighting and sensory materials nurture every milestone.",
       img: "/images/cubs.JPG",
-      color: "bg-blue-600 text-white"
+      gradient: "from-sky-600/90 to-blue-900/90"
     },
     {
       id: "simba",
       age: "2 – 3 Years",
       title: "Simba Room",
-      desc: "Built for the language explosion years \u2014 curiosity-led discovery and emerging friendships.",
+      desc: "Built for the language explosion years — curiosity-led discovery, emerging friendships, and boundless imagination.",
       img: "/images/simba.jpeg",
-      color: "bg-orange-600 text-white"
+      gradient: "from-amber-500/90 to-orange-800/90"
     },
     {
       id: "leo",
       age: "3 – 4 Years",
       title: "Leo Room",
-      desc: "Imagination and intellect grow together through creative arts, early STEM and literacy.",
+      desc: "Imagination and intellect grow together through creative arts, early STEM, and literacy adventures.",
       img: "/images/lio.JPG",
-      color: "bg-purple-600 text-white"
+      gradient: "from-violet-500/90 to-purple-900/90"
     },
     {
       id: "lion",
       age: "5 – 6 Years",
       title: "Lion Room",
-      desc: "School-readiness in a joyful, structured setting. Literacy, numeracy, and leadership.",
+      desc: "School-readiness in a joyful, structured setting. Literacy, numeracy, leadership, and confidence.",
       img: "/images/lion.JPG",
-      color: "bg-brand text-white"
+      gradient: "from-brand/90 to-brand-dk/90"
     }
   ];
 
   return (
     <section id="programs" className="bg-alt section-padding relative overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-16">
-          <span className="inline-block text-[11px] font-extrabold tracking-[0.2em] uppercase text-brand bg-brand-lt px-5 py-2 rounded-full mb-6">Our Learning Rooms</span>
-          <h2 className="font-display text-4xl md:text-5xl font-black text-dark mb-6">Tailored for Every <span className="text-brand">Developmental Stage</span></h2>
-          <p className="text-mid text-lg max-w-2xl mx-auto">Four specialist rooms, each designed to inspire curiosity and support the unique needs of your child&apos;s age group.</p>
-        </div>
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] as const }}
+          className="text-center mb-14 md:mb-20"
+        >
+          <span className="inline-block text-[11px] font-extrabold tracking-[0.2em] uppercase text-brand bg-brand-lt px-5 py-2 rounded-full mb-6">
+            Our Learning Rooms
+          </span>
+          <h2 className="font-display text-4xl md:text-5xl font-black text-dark mb-6">
+            Tailored for Every{" "}
+            <span className="text-brand">Developmental Stage</span>
+          </h2>
+          <p className="text-mid text-lg max-w-2xl mx-auto leading-relaxed">
+            Four specialist rooms, each designed to inspire curiosity and support the unique needs of your child&apos;s age group.
+          </p>
+        </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {rooms.map((room) => (
-            <motion.div 
-              key={room.id}
-              whileHover={{ y: -10 }}
-              className="bg-white rounded-[2rem] overflow-hidden shadow-xl shadow-brand/5 border border-brand-lt flex flex-col group"
-            >
-              <div className="h-56 overflow-hidden relative">
-                <img src={room.img} alt={room.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" referrerPolicy="no-referrer" />
-                <div className="absolute top-4 left-4">
-                  <span className={`px-5 py-2 rounded-full text-[11px] font-black uppercase tracking-[0.15em] ${room.color} shadow-lg border-2 border-white`}>
-                    {room.age}
+        {/* Desktop: Expanding accordion panels */}
+        <div className="hidden lg:block">
+          <div className="flex gap-3 h-[520px]">
+            {rooms.map((room, i) => (
+              <motion.div
+                key={room.id}
+                className="relative rounded-3xl overflow-hidden cursor-pointer"
+                animate={{ flex: activeRoom === i ? 4 : 1 }}
+                transition={{ duration: 0.7, ease: [0.32, 0.72, 0, 1] }}
+                onHoverStart={() => setActiveRoom(i)}
+                onClick={() => setActiveRoom(i)}
+              >
+                <img
+                  src={room.img}
+                  alt={room.title}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  referrerPolicy="no-referrer"
+                />
+                <div className={`absolute inset-0 bg-gradient-to-t ${room.gradient} transition-opacity duration-500 ${activeRoom === i ? "opacity-60" : "opacity-80"}`} />
+
+                {/* Collapsed state */}
+                <div className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 ${activeRoom === i ? "opacity-0 pointer-events-none" : "opacity-100"}`}>
+                  <span className="font-display text-xl font-black text-white -rotate-90 whitespace-nowrap tracking-wide">
+                    {room.title}
                   </span>
                 </div>
-              </div>
-              <div className="p-8 flex flex-col flex-1">
-                <h3 className="font-display text-2xl font-black text-dark mb-4">{room.title}</h3>
-                <p className="text-sm text-soft leading-relaxed mb-8 flex-1">{room.desc}</p>
-                <button className="w-full py-4 rounded-xl border-2 border-brand-lt text-brand font-bold text-sm hover:bg-brand hover:text-white hover:border-brand transition-all">
-                  Learn More
-                </button>
+
+                {/* Expanded state */}
+                <AnimatePresence>
+                  {activeRoom === i && (
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: 10 }}
+                      transition={{ duration: 0.4, delay: 0.2 }}
+                      className="absolute bottom-0 left-0 right-0 p-8"
+                    >
+                      <span className="inline-block px-4 py-1.5 rounded-full text-[11px] font-black uppercase tracking-[0.15em] bg-white/20 text-white backdrop-blur-md border border-white/20 mb-4">
+                        {room.age}
+                      </span>
+                      <h3 className="font-display text-3xl font-black text-white mb-3">
+                        {room.title}
+                      </h3>
+                      <p className="text-white/85 text-sm leading-relaxed max-w-md mb-5">
+                        {room.desc}
+                      </p>
+                      <button className="px-6 py-3 rounded-xl bg-white/15 backdrop-blur-md border border-white/25 text-white text-sm font-bold hover:bg-white hover:text-dark transition-all duration-300">
+                        Learn More
+                      </button>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Navigation dots */}
+          <div className="flex justify-center gap-2 mt-8">
+            {rooms.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setActiveRoom(i)}
+                className={`h-2 rounded-full transition-all duration-500 ${activeRoom === i ? "w-8 bg-brand" : "w-2 bg-brand/25 hover:bg-brand/50"}`}
+              />
+            ))}
+          </div>
+        </div>
+
+        {/* Mobile/Tablet: Stacked image cards */}
+        <div className="lg:hidden grid grid-cols-1 md:grid-cols-2 gap-5">
+          {rooms.map((room, i) => (
+            <motion.div
+              key={room.id}
+              initial={{ opacity: 0, y: 40 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] as const }}
+              className="relative rounded-3xl overflow-hidden h-80 group"
+            >
+              <img
+                src={room.img}
+                alt={room.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                referrerPolicy="no-referrer"
+              />
+              <div className={`absolute inset-0 bg-gradient-to-t ${room.gradient} opacity-70`} />
+              <div className="absolute bottom-0 left-0 right-0 p-6">
+                <span className="inline-block px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-[0.15em] bg-white/20 text-white backdrop-blur-md border border-white/20 mb-3">
+                  {room.age}
+                </span>
+                <h3 className="font-display text-2xl font-black text-white mb-2">{room.title}</h3>
+                <p className="text-white/80 text-sm leading-relaxed">{room.desc}</p>
               </div>
             </motion.div>
           ))}
@@ -499,6 +585,7 @@ const Programs = () => {
     </section>
   );
 };
+
 
 const MarqueeRow: React.FC<{ images: { id: number; src: string; title: string; desc: string }[], reverse?: boolean, speed?: number }> = ({ images, reverse = false, speed = 40 }) => {
   if (images.length === 0) return null;
