@@ -1079,9 +1079,9 @@ const StickyCTA = () => {
       className="fixed bottom-8 left-1/2 -translate-x-1/2 z-[60]"
     >
       <BookTourButton
-        className="bg-brand text-white px-10 py-5 rounded-full font-display font-black shadow-2xl flex items-center gap-3 hover:bg-brand-dk transition-all hover:scale-105 group border-4 border-white"
+        className="bg-brand text-white px-4 md:px-10 py-3 md:py-5 rounded-full font-display font-black shadow-2xl flex items-center gap-2 md:gap-3 hover:bg-brand-dk transition-all hover:scale-105 group border-4 border-white"
       >
-        <Calendar className="w-6 h-6 group-hover:rotate-12 transition-transform" />
+        <Calendar className="w-4 h-4 md:w-6 md:h-6 group-hover:rotate-12 transition-transform" />
         <span>Book a Tour</span>
       </BookTourButton>
     </motion.div>
