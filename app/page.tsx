@@ -557,7 +557,7 @@ const CentreExperience = () => {
     { id: 4, zone: 'social', src: '/zones/4.JPG', title: 'Shared Dining', desc: 'Nutritious meals enjoyed together to build social bonds.' },
     { id: 5, zone: 'indoor', src: '/zones/5.JPG', title: 'Creative Arts Studio', desc: 'Expressing imagination through paint, clay, and mixed media.' },
     { id: 6, zone: 'outdoor', src: '/zones/6.JPG', title: 'Adventure Playground', desc: 'Building gross motor skills and confidence in a safe outdoor setting.' },
-    { id: 7, zone: 'nurturing', src: '/zones/7.JPG', title: 'Restful Sleep Room', desc: 'Individual sleep rhythms respected in a calm, monitored environment.' },
+    { id: 7, zone: 'nurturing', src: '/zones/7.jpg', title: 'Restful Sleep Room', desc: 'Individual sleep rhythms respected in a calm, monitored environment.' },
     { id: 8, zone: 'indoor', src: '/zones/8.JPG', title: 'Construction Zone', desc: 'Engineering and spatial awareness through block play.' },
     { id: 9, zone: 'social', src: '/zones/9.jpeg', title: 'Community Circle', desc: 'Daily morning meetings to build a sense of belonging.' },
     { id: 10, zone: 'outdoor', src: '/zones/10.JPG', title: 'Water Play Station', desc: 'Sensory exploration and early physics with our water features.' },
