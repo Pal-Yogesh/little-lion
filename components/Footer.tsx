@@ -86,9 +86,9 @@ const Footer = () => {
             <ul className="space-y-3">
               {[
                 { name: 'Home', href: '/' },
-                { name: 'About Us', href: '/about' },
-                { name: 'Programs', href: '/programs' },
-                { name: 'Blog', href: '/blog' },
+                { name: 'About Us', href: '#' },
+                { name: 'Programs', href: '#' },
+                { name: 'Blog', href: '#' },
                 { name: 'The Experience', href: '/#experience' },
                 { name: 'FAQs', href: '/#faq' },
               ].map((link) => (
@@ -106,10 +106,10 @@ const Footer = () => {
             <h4 className="text-[11px] font-black tracking-[0.2em] uppercase text-white mb-6">Programs</h4>
             <ul className="space-y-3">
               {[
-                { name: 'Cubs (0–2 yrs)', href: '/programs#cubs' },
-                { name: 'Simba (2–3 yrs)', href: '/programs#simba' },
-                { name: 'Leo (3–4 yrs)', href: '/programs#leo' },
-                { name: 'Lion (4–6 yrs)', href: '/programs#lion' },
+                { name: 'Cubs (0–2 yrs)', href: '#' },
+                { name: 'Simba (2–3 yrs)', href: '#' },
+                { name: 'Leo (3–4 yrs)', href: '#' },
+                { name: 'Lion (4–6 yrs)', href: '#' },
               ].map((link) => (
                 <li key={link.name}>
                   <Link href={link.href} className="text-sm text-white/50 hover:text-brand hover:translate-x-1 transition-all inline-block">
