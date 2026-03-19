@@ -636,40 +636,115 @@ const CentreExperience = () => {
 
 const WhyChooseUs = () => {
   const features = [
-    { icon: <GraduationCap className="w-8 h-8" />, title: "Qualified Educators", desc: "Cert III minimum across all staff \u2014 experienced, genuinely passionate, and dedicated." },
-    { icon: <BookOpen className="w-8 h-8" />, title: "School Readiness", desc: "We prepare children with the skills and independence needed for a smooth transition." },
-    { icon: <Heart className="w-8 h-8" />, title: "Quality Care", desc: "Our 3 Free Days offer and full CCS approval make exceptional learning accessible." },
-    { icon: <Sparkles className="w-8 h-8" />, title: "Parent App", desc: "Real-time photos, meal logs, and daily observations via the Xplor parent app." },
-    { icon: <Users className="w-8 h-8" />, title: "Familiar Faces", desc: "Low staff turnover means your child bonds with the same caring educators every day." },
-    { icon: <Leaf className="w-8 h-8" />, title: "Outdoor Spaces", desc: "Spacious sustainable gardens where children explore nature and move freely." }
+    { icon: <GraduationCap className="w-7 h-7" />, title: "Qualified Educators", desc: "Cert III minimum across all staff — experienced, genuinely passionate, and dedicated.", accent: "from-brand/20 to-brand-lt" },
+    { icon: <BookOpen className="w-7 h-7" />, title: "School Readiness", desc: "We prepare children with the skills and independence needed for a smooth transition.", accent: "from-brand-lt to-brand/10" },
+    { icon: <Heart className="w-7 h-7" />, title: "Quality Care", desc: "Our 3 Free Days offer and full CCS approval make exceptional learning accessible.", accent: "from-brand/20 to-brand-lt" },
+    { icon: <Sparkles className="w-7 h-7" />, title: "Parent App", desc: "Real-time photos, meal logs, and daily observations via the Xplor parent app.", accent: "from-brand-lt to-brand/10" },
+    { icon: <Users className="w-7 h-7" />, title: "Familiar Faces", desc: "Low staff turnover means your child bonds with the same caring educators every day.", accent: "from-brand/20 to-brand-lt" },
+    { icon: <Leaf className="w-7 h-7" />, title: "Outdoor Spaces", desc: "Spacious sustainable gardens where children explore nature and move freely.", accent: "from-brand-lt to-brand/10" }
   ];
 
-  return (
-    <section className="bg-white section-padding relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-brand/5 rounded-full blur-3xl translate-x-1/2 -translate-y-1/2" />
-      
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="text-center mb-20">
-          <span className="inline-block text-[11px] font-extrabold tracking-[0.2em] uppercase text-brand bg-brand-lt px-5 py-2 rounded-full mb-6">Why Little Lion</span>
-          <h2 className="font-display text-4xl md:text-5xl font-black text-dark mb-8">Why Parents <span className="text-brand">Trust Us</span></h2>
-          <p className="text-mid text-lg max-w-2xl mx-auto">We believe every North Shore family deserves an early learning experience that is purposeful, personal, and exceptional.</p>
-        </div>
+  const containerVariants = {
+    hidden: {},
+    visible: {
+      transition: { staggerChildren: 0.12 }
+    }
+  };
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] as const }
+    }
+  };
+
+  return (
+    <section className="bg-gradient-to-b from-white via-brand-lt/30 to-white section-padding relative overflow-hidden">
+      {/* Decorative blobs */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-brand/5 rounded-full blur-3xl translate-x-1/3 -translate-y-1/3" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-brand/5 rounded-full blur-3xl -translate-x-1/3 translate-y-1/3" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-brand/3 rounded-full blur-3xl" />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, margin: "-100px" }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="text-center mb-16 md:mb-20"
+        >
+          <span className="inline-block text-[11px] font-extrabold tracking-[0.2em] uppercase text-brand bg-brand-lt px-5 py-2 rounded-full mb-6">
+            Why Little Lion
+          </span>
+          <h2 className="font-display text-4xl md:text-5xl  font-black text-dark mb-6">
+            Why Parents{" "}
+            <span className="text-brand relative">
+              Trust Us
+              <motion.span
+                className="absolute -bottom-2 left-0 w-full h-1.5 bg-brand/30 rounded-full"
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.8, delay: 0.5, ease: [0.22, 1, 0.36, 1] }}
+                style={{ originX: 0 }}
+              />
+            </span>
+          </h2>
+          <p className="text-mid text-lg max-w-2xl mx-auto leading-relaxed">
+            We believe every North Shore family deserves an early learning experience that is purposeful, personal, and exceptional.
+          </p>
+        </motion.div>
+
+        {/* Cards grid */}
+        <motion.div
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-80px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
+        >
           {features.map((f, i) => (
-            <motion.div 
+            <motion.div
               key={i}
-              whileHover={{ y: -10 }}
-              className="bg-white border-2 border-brand-lt rounded-[2.5rem] p-10 shadow-xl shadow-brand/5 group hover:border-brand/20 transition-all"
+              variants={cardVariants}
+              whileHover={{ y: -8, transition: { duration: 0.3 } }}
+              className="relative group cursor-default"
             >
-              <div className="w-16 h-16 rounded-2xl bg-brand-lt flex items-center justify-center text-brand mb-8 group-hover:scale-110 group-hover:bg-brand group-hover:text-white transition-all duration-500">
-                {f.icon}
+              {/* Card */}
+              <div className="relative bg-white/80 backdrop-blur-sm border border-brand/10 rounded-3xl p-8 lg:p-10 h-full overflow-hidden transition-all duration-500 hover:shadow-2xl hover:shadow-brand/10 hover:border-brand/25">
+                {/* Gradient accent top bar */}
+                <div className={`absolute top-0 left-0 right-0 h-1 bg-gradient-to-r ${f.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-t-3xl`} />
+
+                {/* Floating number */}
+                <span className="absolute top-6 right-8 font-display text-7xl font-black text-brand/[0.04] group-hover:text-brand/[0.08] transition-colors duration-500 select-none">
+                  {String(i + 1).padStart(2, "0")}
+                </span>
+
+                {/* Icon */}
+                <div className="relative w-14 h-14 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 overflow-hidden">
+                  <div className="absolute inset-0 bg-gradient-to-br from-brand-lt to-brand/10 group-hover:opacity-0 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-brand opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl" />
+                  <span className="relative z-10 text-brand group-hover:text-white transition-colors duration-500">
+                    {f.icon}
+                  </span>
+                </div>
+
+                {/* Content */}
+                <h4 className="font-display text-xl lg:text-2xl font-black text-dark mb-3 group-hover:text-brand-dk transition-colors duration-300">
+                  {f.title}
+                </h4>
+                <p className="text-soft leading-relaxed text-[15px]">{f.desc}</p>
+
+                {/* Bottom decorative line */}
+                <div className="mt-6 h-0.5 w-12 bg-brand/20 rounded-full group-hover:w-full transition-all duration-700 ease-out" />
               </div>
-              <h4 className="font-display text-2xl font-black text-dark mb-4">{f.title}</h4>
-              <p className="text-soft leading-relaxed font-medium">{f.desc}</p>
             </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );
