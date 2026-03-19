@@ -129,14 +129,14 @@ const Hero = () => {
           >
             <div className="relative z-10 grid grid-cols-2 gap-3 p-3 bg-white rounded-[2.5rem] shadow-2xl shadow-brand/10 border-4 border-brand-lt">
               {[
-                "child-play-1",
-                "child-learning-1",
-                "child-garden-1",
-                "child-art-1"
+                "/images/1",
+                "/images/2",
+                "/images/3",
+                "/images/4"
               ].map((seed, i) => (
                 <div key={i} className="rounded-2xl overflow-hidden aspect-square">
                   <img 
-                    src={`https://picsum.photos/seed/${seed}/600/600`} 
+                    src={`${seed}.JPG`} 
                     alt={`Childcare activity ${i + 1}`} 
                     className="w-full h-full object-cover"
                     referrerPolicy="no-referrer"
@@ -328,11 +328,12 @@ const AboutUs = () => {
           >
             <div className="relative z-10 rounded-[3rem] overflow-hidden border-8 border-white shadow-2xl">
               <img 
-                src="https://picsum.photos/seed/childcare-fun/800/1000" 
+                src="/images/place.jpg" 
                 alt="Children playing" 
                 className="w-full h-full object-cover aspect-[4/5]"
                 referrerPolicy="no-referrer"
               />
+             
             </div>
             <div className="absolute -top-10 -right-10 w-40 h-40 bg-brand/20 rounded-full blur-3xl" />
             <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-lt rounded-full blur-3xl" />
@@ -349,21 +350,21 @@ const Blogs = () => {
       title: "The Importance of Sensory Play in Early Development",
       category: "Learning",
       date: "March 10, 2024",
-      image: "https://picsum.photos/seed/sensory/600/400",
+      image: "/images/sensory.JPG",
       excerpt: "Discover how sensory activities help build nerve connections in the brain\u2019s pathways..."
     },
     {
       title: "Transitioning Your Child to Preschool: A Parent's Guide",
       category: "Parenting",
       date: "March 05, 2024",
-      image: "https://picsum.photos/seed/preschool/600/400",
+      image: "/images/guide.jpeg",
       excerpt: "Tips and tricks to make the first week at Little Lion a smooth and happy experience for everyone."
     },
     {
       title: "Healthy Lunchbox Ideas Your Kids Will Actually Love",
       category: "Nutrition",
       date: "February 28, 2024",
-      image: "https://picsum.photos/seed/lunch/600/400",
+      image: "/images/food.JPG",
       excerpt: "Nutritious, easy-to-prep meals that satisfy even the pickiest eaters while fueling their day."
     }
   ];
@@ -431,7 +432,7 @@ const Programs = () => {
       age: "0 – 2 Years",
       title: "Cubs Room",
       desc: "A warm, gentle haven designed around each baby\u2019s individual rhythms. Soft lighting and sensory materials.",
-      img: "https://picsum.photos/seed/cubs/600/400",
+      img: "/images/cubs.JPG",
       color: "bg-blue-600 text-white"
     },
     {
@@ -439,7 +440,7 @@ const Programs = () => {
       age: "2 – 3 Years",
       title: "Simba Room",
       desc: "Built for the language explosion years \u2014 curiosity-led discovery and emerging friendships.",
-      img: "https://picsum.photos/seed/simba/600/400",
+      img: "/images/simba.jpeg",
       color: "bg-orange-600 text-white"
     },
     {
@@ -447,7 +448,7 @@ const Programs = () => {
       age: "3 – 4 Years",
       title: "Leo Room",
       desc: "Imagination and intellect grow together through creative arts, early STEM and literacy.",
-      img: "https://picsum.photos/seed/leo/600/400",
+      img: "/images/lio.JPG",
       color: "bg-purple-600 text-white"
     },
     {
@@ -455,7 +456,7 @@ const Programs = () => {
       age: "5 – 6 Years",
       title: "Lion Room",
       desc: "School-readiness in a joyful, structured setting. Literacy, numeracy, and leadership.",
-      img: "https://picsum.photos/seed/lion/600/400",
+      img: "/images/lion.JPG",
       color: "bg-brand text-white"
     }
   ];
@@ -550,18 +551,18 @@ const CentreExperience = () => {
   ];
 
   const images = [
-    { id: 1, zone: 'indoor', src: 'https://picsum.photos/seed/learning-1/800/800', title: 'STEM Discovery Lab', desc: 'Where early science and math concepts come to life through hands-on play.' },
-    { id: 2, zone: 'outdoor', src: 'https://picsum.photos/seed/garden-1/600/400', title: 'Sustainable Garden', desc: 'Children learn to plant, grow, and care for our vegetable patch.' },
-    { id: 3, zone: 'nurturing', src: 'https://picsum.photos/seed/nook-1/600/400', title: 'Reading Nook', desc: 'A quiet, cozy space for storytelling and emotional reflection.' },
-    { id: 4, zone: 'social', src: 'https://picsum.photos/seed/meal-1/800/400', title: 'Shared Dining', desc: 'Nutritious meals enjoyed together to build social bonds.' },
-    { id: 5, zone: 'indoor', src: 'https://picsum.photos/seed/art-1/600/400', title: 'Creative Arts Studio', desc: 'Expressing imagination through paint, clay, and mixed media.' },
-    { id: 6, zone: 'outdoor', src: 'https://picsum.photos/seed/play-1/600/800', title: 'Adventure Playground', desc: 'Building gross motor skills and confidence in a safe outdoor setting.' },
-    { id: 7, zone: 'nurturing', src: 'https://picsum.photos/seed/sleep-1/600/400', title: 'Restful Sleep Room', desc: 'Individual sleep rhythms respected in a calm, monitored environment.' },
-    { id: 8, zone: 'indoor', src: 'https://picsum.photos/seed/blocks-1/600/400', title: 'Construction Zone', desc: 'Engineering and spatial awareness through block play.' },
-    { id: 9, zone: 'social', src: 'https://picsum.photos/seed/community-1/600/400', title: 'Community Circle', desc: 'Daily morning meetings to build a sense of belonging.' },
-    { id: 10, zone: 'outdoor', src: 'https://picsum.photos/seed/water-1/600/400', title: 'Water Play Station', desc: 'Sensory exploration and early physics with our water features.' },
-    { id: 11, zone: 'indoor', src: 'https://picsum.photos/seed/literacy-1/800/400', title: 'Literacy Corner', desc: 'Building a love for language and phonics through interactive play.' },
-    { id: 12, zone: 'nurturing', src: 'https://picsum.photos/seed/sensory-1/600/400', title: 'Sensory Room', desc: 'Calming lights and textures for emotional regulation.' },
+    { id: 1, zone: 'indoor', src: '/zones/1.JPG', title: 'STEM Discovery Lab', desc: 'Where early science and math concepts come to life through hands-on play.' },
+    { id: 2, zone: 'outdoor', src: '/zones/2.JPG', title: 'Sustainable Garden', desc: 'Children learn to plant, grow, and care for our vegetable patch.' },
+    { id: 3, zone: 'nurturing', src: '/zones/3.jpeg', title: 'Reading Nook', desc: 'A quiet, cozy space for storytelling and emotional reflection.' },
+    { id: 4, zone: 'social', src: '/zones/4.JPG', title: 'Shared Dining', desc: 'Nutritious meals enjoyed together to build social bonds.' },
+    { id: 5, zone: 'indoor', src: '/zones/5.JPG', title: 'Creative Arts Studio', desc: 'Expressing imagination through paint, clay, and mixed media.' },
+    { id: 6, zone: 'outdoor', src: '/zones/6.JPG', title: 'Adventure Playground', desc: 'Building gross motor skills and confidence in a safe outdoor setting.' },
+    { id: 7, zone: 'nurturing', src: '/zones/7.JPG', title: 'Restful Sleep Room', desc: 'Individual sleep rhythms respected in a calm, monitored environment.' },
+    { id: 8, zone: 'indoor', src: '/zones/8.JPG', title: 'Construction Zone', desc: 'Engineering and spatial awareness through block play.' },
+    { id: 9, zone: 'social', src: '/zones/9.jpeg', title: 'Community Circle', desc: 'Daily morning meetings to build a sense of belonging.' },
+    { id: 10, zone: 'outdoor', src: '/zones/10.JPG', title: 'Water Play Station', desc: 'Sensory exploration and early physics with our water features.' },
+    { id: 11, zone: 'indoor', src: '/zones/11.JPG', title: 'Literacy Corner', desc: 'Building a love for language and phonics through interactive play.' },
+    { id: 12, zone: 'nurturing', src: '/zones/12.JPG', title: 'Sensory Room', desc: 'Calming lights and textures for emotional regulation.' },
   ];
 
   const filteredImages = activeZone === 'all' ? images : images.filter(img => img.zone === activeZone);
@@ -787,7 +788,7 @@ const FlexibleFamilies = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           <div className="order-2 lg:order-1 relative">
             <div className="rounded-[2.5rem] overflow-hidden shadow-2xl border-4 border-white">
-              <img src="https://picsum.photos/seed/family-joy/1000/1200" alt="Happy family" className="w-full h-full object-cover aspect-[4/5]" referrerPolicy="no-referrer" />
+              <img src="/images/modern-family.JPG" alt="Happy family" className="w-full h-full object-cover aspect-[4/5]" referrerPolicy="no-referrer" />
             </div>
             <div className="absolute -top-10 -left-10 bg-white p-6 rounded-3xl shadow-xl border border-brand-lt hidden md:flex items-center gap-4">
               <div className="w-12 h-12 bg-brand-lt rounded-2xl flex items-center justify-center text-brand">
@@ -844,7 +845,7 @@ const Safety = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           <div className="order-2 lg:order-1 rounded-3xl overflow-hidden h-[500px]">
-            <img src="https://picsum.photos/seed/safety/800/1000" alt="Safety at Little Lion" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
+            <img src="/images/safesecure.JPG" alt="Safety at Little Lion" className="w-full h-full object-cover" referrerPolicy="no-referrer" />
           </div>
           <div className="order-1 lg:order-2">
             <span className="inline-block text-[11px] font-bold tracking-[0.2em] uppercase text-brand bg-brand/10 border border-brand/25 px-4 py-1.5 rounded-full mb-4">Safe & Secure</span>
