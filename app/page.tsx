@@ -24,137 +24,244 @@ import {
 import { motion, AnimatePresence } from 'motion/react';
 import React from 'react';
 import { BookTourButton } from '@/components/BookTourModal';
+import Image from 'next/image';
 
 const Hero = () => {
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const slides = [
+    "/images/1.JPG",
+    "/images/2.JPG",
+    "/images/3.JPG",
+    "/images/4.JPG"
+  ];
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 5000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+
   return (
     <section className="relative bg-white overflow-hidden">
       <div className="absolute top-0 right-0 w-1/3 h-full bg-brand-lt/50 -skew-x-12 translate-x-1/4 hidden lg:block" />
       <div className="absolute -top-24 -left-24 w-96 h-96 bg-brand/5 rounded-full blur-3xl" />
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 py-16 lg:py-24 items-center">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 py-12 lg:py-24 items-center">
+
+          {/* Left content */}
           <div className="flex flex-col">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
-              className="inline-flex items-center gap-2 bg-brand-lt border border-brand/20 text-brand text-[11px] font-extrabold tracking-[0.2em] uppercase px-5 py-2 rounded-full w-fit mb-8"
+              className="inline-flex items-center gap-2 bg-brand-lt border border-brand/20 text-brand text-[11px] font-extrabold tracking-[0.2em] uppercase px-5 py-2 rounded-full w-fit mb-6 lg:mb-8"
             >
               <Sparkles className="w-3 h-3" />
               Enrolments Now Open for 2026
             </motion.div>
-            
-            <motion.h1 
+
+            <motion.h1
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1 }}
-              className="font-display text-5xl md:text-6xl lg:text-7xl font-black text-dark leading-[1.05] mb-8"
+              className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-dark leading-[1.1] mb-5 lg:mb-6"
             >
-              Trusted, <span className="text-brand">Quality</span><br />
-              Childcare in <span className="relative inline-block">
-                Wahroonga
-                <svg className="absolute -bottom-2 left-0 w-full h-3 text-brand/20" viewBox="0 0 100 10" preserveAspectRatio="none">
+              Where Little Learners{" "}
+              <span className="text-brand">Grow, Play</span> &{" "}
+              <span className="relative inline-block">
+                Shine
+                <svg className="absolute -bottom-1 lg:-bottom-2 left-0 w-full h-2 lg:h-3 text-brand/20" viewBox="0 0 100 10" preserveAspectRatio="none">
                   <path d="M0 5 Q 25 0, 50 5 T 100 5" fill="none" stroke="currentColor" strokeWidth="8" strokeLinecap="round" />
                 </svg>
               </span>
             </motion.h1>
 
-            <motion.p 
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2 }}
-              className="text-mid text-lg md:text-xl mb-10 max-w-lg leading-relaxed font-medium"
+              className="text-mid text-base sm:text-lg md:text-xl mb-8 max-w-lg leading-relaxed"
             >
-              Supporting your child&apos;s early learning journey with a nurturing, play-based curriculum and professional childcare in Wahroonga that North Shore families trust.
+              We provide nurturing childcare services and play-based early learning in Wahroonga to help your child feel safe, confident, and excited to explore the world.
             </motion.p>
 
-            <motion.div 
+            {/* CTA buttons */}
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4 mb-12"
+              className="flex flex-row items-center gap-7 mb-8 lg:mb-10"
             >
-              <BookTourButton className="bg-brand text-white font-display font-black px-10 py-5 rounded-2xl hover:bg-brand-dk transition-all hover:scale-105 shadow-xl shadow-brand/30 text-center text-lg">
-                Book a Tour Today
+              <BookTourButton className="bg-brand text-white font-display font-black px-7 py-4 lg:px-10 lg:py-5 rounded-2xl hover:bg-brand-dk transition-all hover:scale-105 shadow-xl shadow-brand/30 text-center text-base lg:text-lg">
+                Book a Tour
               </BookTourButton>
-              <a href="#programs" className="bg-white text-dark border-2 border-brand-lt font-display font-black px-10 py-5 rounded-2xl hover:bg-brand-lt transition-all text-center text-lg">
-                Explore Programs
-              </a>
+              <span className="text-sm sm:text-base font-bold text-dark">
+                <span className="text-brand font-black">3 Days FREE*</span> <br className='sm:block' />for new families
+              </span>
             </motion.div>
 
-            <motion.div 
+            {/* Divider - mobile */}
+            <div className="h-px bg-brand-lt mb-8 lg:hidden" />
+
+            {/* Trust badges - vertical on mobile, horizontal on desktop */}
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.4 }}
-              className="flex flex-row items-center gap-3 md:gap-4 overflow-x-auto no-scrollbar pb-2"
+              className="grid grid-cols-2 sm:grid-cols-4 lg:flex lg:flex-row gap-4 lg:gap-3 mb-8 lg:mb-0 lg:overflow-x-auto lg:no-scrollbar lg:pb-2"
             >
-              <div className="flex items-center gap-3 bg-white border border-brand-lt px-4 py-2.5 rounded-xl shadow-sm">
-                <div className="w-8 h-8 bg-gold/10 rounded-lg flex items-center justify-center text-gold">
+              <div className="flex items-center gap-3 lg:bg-white lg:border lg:border-brand-lt lg:px-4 lg:py-2.5 lg:rounded-xl lg:shadow-sm shrink-0">
+                <div className="w-10 h-10 lg:w-8 lg:h-8 bg-gold/10 rounded-full lg:rounded-lg flex items-center justify-center text-gold">
                   <Star className="w-5 h-5 fill-gold" />
                 </div>
                 <div>
                   <div className="flex gap-0.5 text-gold mb-0.5">
-                    {[...Array(5)].map((_, i) => <Star key={i} className="w-2.5 h-2.5 fill-gold" />)}
+                    {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-gold" />)}
                   </div>
-                  <div className="text-[10px] font-black text-dark leading-none">5.0 Google Reviews</div>
+                  <div className="text-[11px] lg:text-[10px] font-black text-dark leading-tight">5.0 Google Rating</div>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 bg-white border border-brand-lt px-4 py-2.5 rounded-xl shadow-sm">
-                <div className="w-8 h-8 bg-brand-lt rounded-lg flex items-center justify-center text-brand">
-                  <GraduationCap className="w-5 h-5" />
+              <div className="flex items-center gap-3 lg:bg-white lg:border lg:border-brand-lt lg:px-4 lg:py-2.5 lg:rounded-xl lg:shadow-sm shrink-0">
+                <div className="w-10 h-10 lg:w-8 lg:h-8 bg-brand-lt rounded-full lg:rounded-lg flex items-center justify-center text-brand">
+                  <Clock className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-[10px] font-black text-dark leading-none mb-1">NQS Meeting</div>
-                  <div className="text-[8px] font-bold text-soft uppercase tracking-widest leading-none">National Standards</div>
+                  <div className="text-[11px] lg:text-[10px] text-soft leading-tight">Experience</div>
+                  <div className="text-[12px] lg:text-[10px] font-black text-dark leading-tight">10+ Years</div>
                 </div>
               </div>
 
-              <div className="flex items-center gap-3 bg-white border border-brand-lt px-4 py-2.5 rounded-xl shadow-sm">
-                <div className="w-8 h-8 bg-brand/10 rounded-lg flex items-center justify-center text-brand">
+              <div className="flex items-center gap-3 lg:bg-white lg:border lg:border-brand-lt lg:px-4 lg:py-2.5 lg:rounded-xl lg:shadow-sm shrink-0">
+                <div className="w-10 h-10 lg:w-8 lg:h-8 bg-brand/10 rounded-full lg:rounded-lg flex items-center justify-center text-brand">
                   <ShieldCheck className="w-5 h-5" />
                 </div>
                 <div>
-                  <div className="text-[10px] font-black text-dark leading-none mb-1">CCS Approved</div>
-                  <div className="text-[8px] font-bold text-soft uppercase tracking-widest leading-none">Govt. Subsidy</div>
+                  <div className="text-[11px] lg:text-[10px] text-soft leading-tight">Approved</div>
+                  <div className="text-[12px] lg:text-[10px] font-black text-dark leading-tight">CCS</div>
                 </div>
+              </div>
+
+              <div className="flex items-center gap-3 lg:bg-white lg:border lg:border-brand-lt lg:px-4 lg:py-2.5 lg:rounded-xl lg:shadow-sm shrink-0">
+                <div className="w-10 h-10 lg:w-8 lg:h-8 bg-brand-lt rounded-full lg:rounded-lg flex items-center justify-center text-brand">
+                  <GraduationCap className="w-5 h-5" />
+                </div>
+                <div>
+                  <div className="text-[11px] lg:text-[10px] text-soft leading-tight">Focus</div>
+                  <div className="text-[12px] lg:text-[10px] font-black text-dark leading-tight">Quality</div>
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Government logos */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.5 }}
+              className="pt-6 lg:pt-8 mt-2 lg:mt-8 border-t border-brand-lt"
+            >
+              <p className="text-[10px] lg:text-[11px] font-extrabold tracking-[0.2em] uppercase text-soft mb-4 lg:mb-5">
+                Government Approved & Accredited
+              </p>
+              <div className="flex items-center gap-5 lg:gap-6">
+                <Image src="/images1.png" width={200} height={80} alt="NSW Government" className="h-12 lg:h-20 w-auto object-contain" />
+                <div className="w-px h-8 lg:h-10 bg-brand-lt" />
+                <Image src="/image2.webp" width={200} height={80} alt="National Quality Standard" className="h-12 lg:h-20 w-auto object-contain" />
               </div>
             </motion.div>
           </div>
 
-          <motion.div 
+          {/* Image slider - hidden on mobile, shown on desktop */}
+          <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="relative"
+            className="relative hidden lg:block"
           >
-            <div className="relative z-10 grid grid-cols-2 gap-3 p-3 bg-white rounded-[2.5rem] shadow-2xl shadow-brand/10 border-4 border-brand-lt">
-              {[
-                "/images/1",
-                "/images/2",
-                "/images/3",
-                "/images/4"
-              ].map((seed, i) => (
-                <div key={i} className="rounded-2xl overflow-hidden aspect-square">
-                  <img 
-                    src={`${seed}.JPG`} 
-                    alt={`Childcare activity ${i + 1}`} 
-                    className="w-full h-full object-cover"
-                    referrerPolicy="no-referrer"
+            <div className="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-brand/10 border-4 border-brand-lt aspect-[4/3]">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={currentSlide}
+                  src={slides[currentSlide]}
+                  alt={`Little Lion centre ${currentSlide + 1}`}
+                  className="w-full h-full object-cover absolute inset-0"
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.7 }}
+                  referrerPolicy="no-referrer"
+                />
+              </AnimatePresence>
+
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                {slides.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentSlide(i)}
+                    className={`h-2 rounded-full transition-all duration-500 ${currentSlide === i ? "w-8 bg-white" : "w-2 bg-white/50 hover:bg-white/80"}`}
                   />
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
 
-            <div className="absolute -top-8 -right-8 z-20 bg-brand p-6 rounded-[2rem] shadow-2xl text-white hidden md:block max-w-[200px] border-4 border-white">
-              <div className="font-display text-4xl font-black mb-1">10+</div>
-              <div className="text-[10px] font-bold uppercase tracking-widest leading-tight opacity-90">Years of Excellence in Early Learning</div>
+            <div className="absolute -top-6 -right-6 z-20 bg-brand p-5 rounded-2xl shadow-2xl text-white border-4 border-white">
+              <div className="font-display text-3xl font-black mb-0.5">10+</div>
+              <div className="text-[9px] font-bold uppercase tracking-widest leading-tight opacity-90">Years of<br />Excellence</div>
+            </div>
+
+            <div className="absolute -bottom-4 -left-4 z-20 bg-gold p-4 rounded-2xl shadow-2xl text-white border-4 border-white">
+              <div className="font-display text-lg font-black leading-tight">3 FREE</div>
+              <div className="text-[9px] font-bold uppercase tracking-wider opacity-90">Days Offer</div>
             </div>
           </motion.div>
+
+          {/* Mobile slider - below content */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.3, duration: 0.5 }}
+            className="relative lg:hidden -mx-4 sm:mx-0"
+          >
+            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl aspect-[16/10] sm:aspect-[4/3]">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={`mobile-${currentSlide}`}
+                  src={slides[currentSlide]}
+                  alt={`Little Lion centre ${currentSlide + 1}`}
+                  className="w-full h-full object-cover absolute inset-0"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                  referrerPolicy="no-referrer"
+                />
+              </AnimatePresence>
+
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+                {slides.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setCurrentSlide(i)}
+                    className={`h-1.5 rounded-full transition-all duration-500 ${currentSlide === i ? "w-6 bg-white" : "w-1.5 bg-white/50"}`}
+                  />
+                ))}
+              </div>
+
+              {/* Mobile floating offer */}
+              <div className="absolute top-3 right-3 bg-gold px-3 py-1.5 rounded-xl text-white shadow-lg">
+                <div className="font-display text-xs font-black">3 FREE Days</div>
+              </div>
+            </div>
+          </motion.div>
+
         </div>
       </div>
     </section>
   );
 };
+
+
 
 const Philosophy = () => {
   return (
@@ -162,7 +269,7 @@ const Philosophy = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-start">
           <div className="order-2 lg:order-1">
-            <span className="inline-block text-[13px] font-black tracking-[0.1em] uppercase text-brand mb-4">Little Lion Early Learning</span>
+            <span className="inline-block text-[13px] font-black tracking-[0.1em] uppercase text-brand mb-4">Little Lion Early Learning Centre | Wahroonga</span>
             <h2 className="font-display text-5xl md:text-6xl font-black text-brand leading-tight mb-8">
               Kindergarten in Wahroonga
             </h2>
@@ -207,7 +314,7 @@ const Philosophy = () => {
                 ></iframe>
                 
                 <div className="absolute top-4 left-4">
-                  <a href="#" className="bg-white px-4 py-2 rounded shadow-md text-[13px] font-medium text-[#1a73e8] flex items-center gap-2 hover:bg-gray-50 transition-colors">
+                  <a href="https://maps.app.goo.gl/XRdstVE3fLPopDrX8" target="_blank" rel="noopener noreferrer" className="bg-white px-4 py-2 rounded shadow-md text-[13px] font-medium text-[#1a73e8] flex items-center gap-2 hover:bg-gray-50 transition-colors">
                     Open in Maps <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 </div>
@@ -221,7 +328,7 @@ const Philosophy = () => {
                 </div>
                 
                 <div className="absolute bottom-12 left-1/2 -translate-x-1/2">
-                  <a href="#" className="bg-brand text-white px-8 py-3 rounded-xl text-[15px] font-bold flex items-center gap-2 shadow-xl hover:bg-brand-dk transition-all hover:scale-105">
+                  <a href="https://maps.app.goo.gl/XRdstVE3fLPopDrX8" target="_blank" rel="noopener noreferrer" className="bg-brand text-white px-8 py-3 rounded-xl text-[15px] font-bold flex items-center gap-2 shadow-xl hover:bg-brand-dk transition-all hover:scale-105">
                     <Navigation className="w-4 h-4 fill-white" />
                     Get Directions
                   </a>
@@ -278,6 +385,16 @@ const Philosophy = () => {
 };
 
 const AboutUs = () => {
+  const [aboutSlide, setAboutSlide] = useState(0);
+  const aboutImages = ["/images/1.JPG", "/images/2.JPG", "/images/3.JPG", "/images/4.JPG"];
+
+  React.useEffect(() => {
+    const timer = setInterval(() => {
+      setAboutSlide((prev) => (prev + 1) % aboutImages.length);
+    }, 4000);
+    return () => clearInterval(timer);
+  }, [aboutImages.length]);
+
   return (
     <section className="bg-brand-lt/30 section-padding relative overflow-hidden" id="about">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -287,7 +404,7 @@ const AboutUs = () => {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
           >
-            <span className="inline-block text-[11px] font-extrabold tracking-[0.2em] uppercase text-brand bg-white px-5 py-2 rounded-full mb-6 shadow-sm">Welcome to Little Lion</span>
+            <span className="inline-block text-[11px] font-extrabold tracking-[0.2em] uppercase text-brand bg-white px-5 py-2 rounded-full mb-6 shadow-sm">Little Lion Early Learning Centre | Wahroonga</span>
             <h2 className="font-display text-4xl md:text-6xl font-black text-dark leading-[1.1] mb-8">
               A Place Where <span className="text-brand italic">Magic</span> Happens Every Day
             </h2>
@@ -299,7 +416,7 @@ const AboutUs = () => {
                 Our state-of-the-art centre is designed to stimulate young minds while providing the warmth and security of a second home. We don&apos;t just &quot;watch&quot; children; we partner with families to nurture the unique potential within every child, making us the top choice for a preschool near me.
               </p>
             </div>
-            
+
             <div className="mt-10 grid grid-cols-3 gap-8 mb-10">
               <div>
                 <div className="text-3xl font-black text-brand mb-1">150+</div>
@@ -315,9 +432,9 @@ const AboutUs = () => {
               </div>
             </div>
 
-            <a href="#philosophy" className="inline-block bg-brand text-white font-display font-black px-10 py-4 rounded-xl hover:bg-brand-dk transition-all shadow-lg shadow-brand/20">
-              Know More
-            </a>
+            <BookTourButton className="inline-block bg-brand text-white font-display font-black px-10 py-4 rounded-xl hover:bg-brand-dk transition-all shadow-lg shadow-brand/20">
+              Book a Tour
+            </BookTourButton>
           </motion.div>
 
           <motion.div
@@ -326,14 +443,31 @@ const AboutUs = () => {
             viewport={{ once: true }}
             className="relative"
           >
-            <div className="relative z-10 rounded-[3rem] overflow-hidden border-8 border-white shadow-2xl">
-              <img 
-                src="/images/place.jpg" 
-                alt="Children playing" 
-                className="w-full h-full object-cover aspect-[4/5]"
-                referrerPolicy="no-referrer"
-              />
-             
+            <div className="relative z-10 rounded-[3rem] overflow-hidden border-8 border-white shadow-2xl aspect-[4/5]">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={aboutSlide}
+                  src={aboutImages[aboutSlide]}
+                  alt={`Little Lion centre ${aboutSlide + 1}`}
+                  className="w-full h-full object-cover absolute inset-0"
+                  initial={{ opacity: 0, scale: 1.05 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.7 }}
+                  referrerPolicy="no-referrer"
+                />
+              </AnimatePresence>
+
+              {/* Slide dots */}
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                {aboutImages.map((_, i) => (
+                  <button
+                    key={i}
+                    onClick={() => setAboutSlide(i)}
+                    className={`h-2 rounded-full transition-all duration-500 ${aboutSlide === i ? "w-8 bg-white" : "w-2 bg-white/50 hover:bg-white/80"}`}
+                  />
+                ))}
+              </div>
             </div>
             <div className="absolute -top-10 -right-10 w-40 h-40 bg-brand/20 rounded-full blur-3xl" />
             <div className="absolute -bottom-10 -left-10 w-40 h-40 bg-brand-lt rounded-full blur-3xl" />
@@ -343,6 +477,7 @@ const AboutUs = () => {
     </section>
   );
 };
+
 
 const Blogs = () => {
   const posts = [
@@ -531,9 +666,6 @@ const Programs = () => {
                       <p className="text-white/85 text-sm leading-relaxed max-w-md mb-5">
                         {room.desc}
                       </p>
-                      <button className="px-6 py-3 rounded-xl bg-white/15 backdrop-blur-md border border-white/25 text-white text-sm font-bold hover:bg-white hover:text-dark transition-all duration-300">
-                        Learn More
-                      </button>
                     </motion.div>
                   )}
                 </AnimatePresence>
@@ -672,7 +804,7 @@ const CentreExperience = () => {
             whileInView={{ opacity: 1, y: 0 }}
             className="font-display text-4xl md:text-5xl font-black text-dark mb-8"
           >
-            A Space Designed for <span className="text-brand">Wonder</span>
+            Where Little Moments Become <span className="text-brand">Big Milestones</span>
           </motion.h2>
           <motion.p 
             initial={{ opacity: 0, y: 20 }}
@@ -680,7 +812,7 @@ const CentreExperience = () => {
             transition={{ delay: 0.1 }}
             className="text-mid max-w-2xl mx-auto text-lg leading-relaxed"
           >
-            Step inside Little Lion Wahroonga. Our purpose-built environments are designed to inspire curiosity, ensure safety, and nurture every child&apos;s unique potential.
+            Gentle, nurturing childcare in Wahroonga — a calm and welcoming space where curiosity is encouraged, confidence grows naturally, and every child is supported with warmth, care, and genuine connection each day.
           </motion.p>
         </div>
 
@@ -1049,22 +1181,22 @@ const Safety = () => {
 const Testimonials = () => {
   const reviews = [
     {
+      name:"Sreenesh S Nambiar",
+      initial: "S",
+      location: "Wahroonga",
+      text: "My son tried several childcare and I would say this one is the best childcare in and around Hornsby area . They take proper care  and have proper safety protocols in place.  First day itself my child got settled . They even gave my son a quick shower in warm water when he was not settled and made him feel relaxed . I do really appreciate it . A great shout out to Yeene , Noor and team at Little Lion."
+    },
+    {
+      name: "Du Ethan",
+      initial: "D",
+      location: "Turramurra",
+      text: "My son is having a great time at Little Lion Wahroonga center. The center manager Sam is very responsible, the educators Cathy and Karen are very friendly, toys are new and clean, and he is happy every time when we pick up him. He even starts eating and brush teeth by himself after going to the center.."
+    },
+    {
       name: "Maggie Wei",
       initial: "M",
-      location: "Wahroonga",
-      text: "Very happy with the experience so far! We have a 10-month-old going two days a week and he is having so much fun. Great staff who are attentive, constantly update us and really care about his well-being."
-    },
-    {
-      name: "Sarah T.",
-      initial: "S",
-      location: "Turramurra",
-      text: "The educators here are absolutely wonderful. Our daughter started as a shy toddler and now she runs in every morning excited to see her friends. The Xplor app keeps us connected all day."
-    },
-    {
-      name: "James & Priya L.",
-      initial: "J",
       location: "Hornsby",
-      text: "We were nervous about starting childcare but the Little Lion team made the transition so smooth. The meals are great, the outdoor space is beautiful, and our son is genuinely thriving."
+      text: "Very happy with the experience so far! We have a 10 month old going two days a week and he is having so much fun and comes home happy and rested. Great staff who are attentive, constantly updates us and really cares about their well-being."
     }
   ];
 
@@ -1074,7 +1206,7 @@ const Testimonials = () => {
         <div className="text-center mb-16">
           <span className="inline-block text-[11px] font-bold tracking-[0.2em] uppercase text-brand bg-brand-lt px-4 py-1.5 rounded-full mb-4">What Parents Say</span>
           <h2 className="font-display text-4xl font-black text-dark mb-4">Real Stories from the <span className="text-brand">Wahroonga Community</span></h2>
-          <p className="text-mid max-w-2xl mx-auto">Don&apos;t just take our word for it \u2014 hear from the families who trust us with their most precious people every day.</p>
+          <p className="text-mid max-w-2xl mx-auto">Don&apos;t just take our word for it hear from the families who trust us with their most precious people every day.</p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -1090,7 +1222,7 @@ const Testimonials = () => {
                 </div>
                 <div>
                   <div className="font-display font-extrabold text-dark text-sm">{r.name}</div>
-                  <div className="text-[11px] text-soft">\u2B50 Google Review \u00B7 {r.location}</div>
+                  <div className="text-[11px] text-soft">Google Review {r.location}</div>
                 </div>
               </div>
             </div>
@@ -1133,13 +1265,13 @@ const BookTour = () => {
 
             <div className="flex flex-wrap gap-4">
               <a href="tel:0299792752" className="bg-brand text-white font-display font-bold px-8 py-4 rounded-lg hover:bg-brand-dk transition-colors">
-                \uD83D\uDCC5 Book a Tour
+                 Book a Tour
               </a>
               <button className="border-2 border-brand text-brand font-display font-bold px-8 py-4 rounded-lg hover:bg-brand hover:text-white transition-all">
                 Join the Waitlist
               </button>
             </div>
-            <p className="text-xs text-soft mt-6">Mon \u2013 Fri \u00B7 7:00am \u2013 6:00pm</p>
+            <p className="text-xs text-soft mt-6">Mon - Fri (7:00am - 6:00pm)</p>
           </div>
 
           <div className="space-y-6">
@@ -1265,7 +1397,7 @@ export default function Home() {
       <Safety />
       <Testimonials />
       <BookTour />
-      <Blogs />
+      {/* <Blogs /> */}
       <FAQ />
     </>
   );
