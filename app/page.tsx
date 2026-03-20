@@ -28,17 +28,10 @@ import Image from 'next/image';
 
 const Hero = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const slides = [
-    "/images/1.JPG",
-    "/images/2.JPG",
-    "/images/3.JPG",
-    "/images/4.JPG"
-  ];
+  const slides = ["/images/1.JPG", "/images/2.JPG", "/images/3.JPG", "/images/4.JPG"];
 
   React.useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % slides.length);
-    }, 5000);
+    const timer = setInterval(() => setCurrentSlide((p) => (p + 1) % slides.length), 5000);
     return () => clearInterval(timer);
   }, [slides.length]);
 
@@ -48,218 +41,219 @@ const Hero = () => {
       <div className="absolute -top-24 -left-24 w-96 h-96 bg-brand/5 rounded-full blur-3xl" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 py-12 lg:py-24 items-center">
 
-          {/* Left content */}
-          <div className="flex flex-col">
-            <motion.div
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="inline-flex items-center gap-2 bg-brand-lt border border-brand/20 text-brand text-[11px] font-extrabold tracking-[0.2em] uppercase px-5 py-2 rounded-full w-fit mb-6 lg:mb-8"
-            >
-              <Sparkles className="w-3 h-3" />
-              Enrolments Now Open for 2026
-            </motion.div>
-
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1 }}
-              className="font-display text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-dark leading-[1.1] mb-5 lg:mb-6"
-            >
-              Where Little Learners{" "}
-              <span className="text-brand">Grow, Play</span> &{" "}
-              <span className="relative inline-block">
-                Shine
-                <svg className="absolute -bottom-1 lg:-bottom-2 left-0 w-full h-2 lg:h-3 text-brand/20" viewBox="0 0 100 10" preserveAspectRatio="none">
-                  <path d="M0 5 Q 25 0, 50 5 T 100 5" fill="none" stroke="currentColor" strokeWidth="8" strokeLinecap="round" />
-                </svg>
-              </span>
-            </motion.h1>
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2 }}
-              className="text-mid text-base sm:text-lg md:text-xl mb-8 max-w-lg leading-relaxed"
-            >
-              We provide nurturing childcare services and play-based early learning in Wahroonga to help your child feel safe, confident, and excited to explore the world.
-            </motion.p>
-
-            {/* CTA buttons */}
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="flex flex-row items-center gap-7 mb-8 lg:mb-10"
-            >
-              <BookTourButton className="bg-brand text-white font-display font-black px-7 py-4 lg:px-10 lg:py-5 rounded-2xl hover:bg-brand-dk transition-all hover:scale-105 shadow-xl shadow-brand/30 text-center text-base lg:text-lg">
-                Book a Tour
-              </BookTourButton>
-              <span className="text-sm sm:text-base font-bold text-dark">
-                <span className="text-brand font-black">3 Days FREE*</span> <br className='sm:block' />for new families
-              </span>
-            </motion.div>
-
-            {/* Divider - mobile */}
-            <div className="h-px bg-brand-lt mb-8 lg:hidden" />
-
-            {/* Trust badges - vertical on mobile, horizontal on desktop */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.4 }}
-              className="grid grid-cols-2 sm:grid-cols-4 lg:flex lg:flex-row gap-4 lg:gap-3 mb-8 lg:mb-0 lg:overflow-x-auto lg:no-scrollbar lg:pb-2"
-            >
-              <div className="flex items-center gap-3 lg:bg-white lg:border lg:border-brand-lt lg:px-4 lg:py-2.5 lg:rounded-xl lg:shadow-sm shrink-0">
-                <div className="w-10 h-10 lg:w-8 lg:h-8 bg-gold/10 rounded-full lg:rounded-lg flex items-center justify-center text-gold">
-                  <Star className="w-5 h-5 fill-gold" />
-                </div>
-                <div>
-                  <div className="flex gap-0.5 text-gold mb-0.5">
-                    {[...Array(5)].map((_, i) => <Star key={i} className="w-3 h-3 fill-gold" />)}
-                  </div>
-                  <div className="text-[11px] lg:text-[10px] font-black text-dark leading-tight">5.0 Google Rating</div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3 lg:bg-white lg:border lg:border-brand-lt lg:px-4 lg:py-2.5 lg:rounded-xl lg:shadow-sm shrink-0">
-                <div className="w-10 h-10 lg:w-8 lg:h-8 bg-brand-lt rounded-full lg:rounded-lg flex items-center justify-center text-brand">
-                  <Clock className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-[11px] lg:text-[10px] text-soft leading-tight">Experience</div>
-                  <div className="text-[12px] lg:text-[10px] font-black text-dark leading-tight">10+ Years</div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3 lg:bg-white lg:border lg:border-brand-lt lg:px-4 lg:py-2.5 lg:rounded-xl lg:shadow-sm shrink-0">
-                <div className="w-10 h-10 lg:w-8 lg:h-8 bg-brand/10 rounded-full lg:rounded-lg flex items-center justify-center text-brand">
-                  <ShieldCheck className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-[11px] lg:text-[10px] text-soft leading-tight">Approved</div>
-                  <div className="text-[12px] lg:text-[10px] font-black text-dark leading-tight">CCS</div>
-                </div>
-              </div>
-
-              <div className="flex items-center gap-3 lg:bg-white lg:border lg:border-brand-lt lg:px-4 lg:py-2.5 lg:rounded-xl lg:shadow-sm shrink-0">
-                <div className="w-10 h-10 lg:w-8 lg:h-8 bg-brand-lt rounded-full lg:rounded-lg flex items-center justify-center text-brand">
-                  <GraduationCap className="w-5 h-5" />
-                </div>
-                <div>
-                  <div className="text-[11px] lg:text-[10px] text-soft leading-tight">Focus</div>
-                  <div className="text-[12px] lg:text-[10px] font-black text-dark leading-tight">Quality</div>
-                </div>
-              </div>
-            </motion.div>
-
-            {/* Government logos */}
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.5 }}
-              className="pt-6 lg:pt-8 mt-2 lg:mt-8 border-t border-brand-lt"
-            >
-              <p className="text-[10px] lg:text-[11px] font-extrabold tracking-[0.2em] uppercase text-soft mb-4 lg:mb-5">
-                Government Approved & Accredited
-              </p>
-              <div className="flex items-center gap-5 lg:gap-6">
-                <Image src="/images1.png" width={200} height={80} alt="NSW Government" className="h-12 lg:h-20 w-auto object-contain" />
-                <div className="w-px h-8 lg:h-10 bg-brand-lt" />
-                <Image src="/image2.webp" width={200} height={80} alt="National Quality Standard" className="h-12 lg:h-20 w-auto object-contain" />
-              </div>
-            </motion.div>
-          </div>
-
-          {/* Image slider - hidden on mobile, shown on desktop */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.2, duration: 0.6 }}
-            className="relative hidden lg:block"
+        {/* ===== MOBILE HERO ===== */}
+        <div className="lg:hidden py-8 sm:py-12">
+          {/* Badge */}
+          <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
+            className="inline-flex items-center gap-2 bg-brand-lt border border-brand/20 text-brand text-[10px] font-extrabold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full mb-5"
           >
-            <div className="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-brand/10 border-4 border-brand-lt aspect-[4/3]">
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={currentSlide}
-                  src={slides[currentSlide]}
-                  alt={`Little Lion centre ${currentSlide + 1}`}
-                  className="w-full h-full object-cover absolute inset-0"
-                  initial={{ opacity: 0, scale: 1.05 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.7 }}
-                  referrerPolicy="no-referrer"
-                />
-              </AnimatePresence>
-
-              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
-                {slides.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrentSlide(i)}
-                    className={`h-2 rounded-full transition-all duration-500 ${currentSlide === i ? "w-8 bg-white" : "w-2 bg-white/50 hover:bg-white/80"}`}
-                  />
-                ))}
-              </div>
-            </div>
-
-            <div className="absolute -top-6 -right-6 z-20 bg-brand p-5 rounded-2xl shadow-2xl text-white border-4 border-white">
-              <div className="font-display text-3xl font-black mb-0.5">10+</div>
-              <div className="text-[9px] font-bold uppercase tracking-widest leading-tight opacity-90">Years of<br />Excellence</div>
-            </div>
-
-            <div className="absolute -bottom-4 -left-4 z-20 bg-gold p-4 rounded-2xl shadow-2xl text-white border-4 border-white">
-              <div className="font-display text-lg font-black leading-tight">3 FREE</div>
-              <div className="text-[9px] font-bold uppercase tracking-wider opacity-90">Days Offer</div>
-            </div>
+            <Sparkles className="w-3 h-3" />
+            Enrolments Now Open for 2026
           </motion.div>
 
-          {/* Mobile slider - below content */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.3, duration: 0.5 }}
-            className="relative lg:hidden -mx-4 sm:mx-0"
+          {/* Heading */}
+          <motion.h1 initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+            className="font-display text-[2.1rem] sm:text-5xl font-black text-dark leading-[1.12] mb-4"
           >
-            <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-xl aspect-[16/10] sm:aspect-[4/3]">
+            Where Little Learners <span className="text-brand">Grow, Play</span> & Shine
+          </motion.h1>
+
+          {/* Description */}
+          <motion.p initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
+            className="text-mid text-[15px] sm:text-base leading-relaxed mb-6 max-w-md"
+          >
+            We provide nurturing childcare services and play-based early learning in Wahroonga to help your child feel safe, confident, and excited to explore the world.
+          </motion.p>
+
+          {/* Mobile image slider */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
+            className="relative -mx-4 sm:mx-0 mb-8"
+          >
+            <div className="relative sm:rounded-2xl overflow-hidden  aspect-[16/9]">
               <AnimatePresence mode="wait">
-                <motion.img
-                  key={`mobile-${currentSlide}`}
-                  src={slides[currentSlide]}
+                <motion.img key={`m-${currentSlide}`} src={slides[currentSlide]}
                   alt={`Little Lion centre ${currentSlide + 1}`}
-                  className="w-full h-full object-cover absolute inset-0"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                  referrerPolicy="no-referrer"
+                  className="w-full h-full object-cover absolute inset-0 px-2 rounded-2xl"
+                  initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }} referrerPolicy="no-referrer"
                 />
               </AnimatePresence>
-
+              {/* Gradient overlay bottom */}
+              {/* <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/40 to-transparent" /> */}
+              {/* Dots */}
               <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
                 {slides.map((_, i) => (
-                  <button
-                    key={i}
-                    onClick={() => setCurrentSlide(i)}
+                  <button key={i} onClick={() => setCurrentSlide(i)}
                     className={`h-1.5 rounded-full transition-all duration-500 ${currentSlide === i ? "w-6 bg-white" : "w-1.5 bg-white/50"}`}
                   />
                 ))}
               </div>
-
-              {/* Mobile floating offer */}
-              <div className="absolute top-3 right-3 bg-gold px-3 py-1.5 rounded-xl text-white shadow-lg">
+              {/* Offer badge */}
+              <div className="absolute top-3 right-3 bg-gold px-3 py-1.5 rounded-xl text-white shadow-lg z-20">
                 <div className="font-display text-xs font-black">3 FREE Days</div>
               </div>
             </div>
           </motion.div>
 
+          {/* CTA row */}
+          <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
+            className="flex items-center gap-5 mb-8"
+          >
+            <BookTourButton className="bg-brand text-white font-display font-black px-7 py-4 rounded-2xl shadow-xl shadow-brand/30 text-base shrink-0">
+              Book a Tour
+            </BookTourButton>
+            <span className="text-sm font-bold text-dark leading-snug">
+              <span className="text-brand font-black">3 Days FREE*</span><br />for new families
+            </span>
+          </motion.div>
+
+          {/* Divider */}
+          <div className="h-px bg-brand-lt mb-6" />
+
+          {/* Trust badges - 2x2 grid */}
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}
+            className="grid grid-cols-2 gap-y-5 gap-x-4 mb-6"
+          >
+            {[
+              { icon: <Star className="w-5 h-5 fill-gold" />, bg: "bg-gold/10", color: "text-gold", label: <><div className="flex gap-0.5 mb-0.5">{[...Array(5)].map((_, i) => <Star key={i} className="w-2.5 h-2.5 fill-gold text-gold" />)}</div><div className="text-[11px] font-black text-dark">5.0 Google Rating</div></> },
+              { icon: <Clock className="w-5 h-5" />, bg: "bg-brand-lt", color: "text-brand", label: <><div className="text-[10px] text-soft">Experience</div><div className="text-[12px] font-black text-dark">10+ Years</div></> },
+              { icon: <ShieldCheck className="w-5 h-5" />, bg: "bg-brand/10", color: "text-brand", label: <><div className="text-[10px] text-soft">Approved</div><div className="text-[12px] font-black text-dark">CCS</div></> },
+              { icon: <GraduationCap className="w-5 h-5" />, bg: "bg-brand-lt", color: "text-brand", label: <><div className="text-[10px] text-soft">Focus</div><div className="text-[12px] font-black text-dark">Quality</div></> },
+            ].map((b, i) => (
+              <div key={i} className="flex items-center gap-3">
+                <div className={`w-10 h-10 ${b.bg} rounded-full flex items-center justify-center ${b.color} shrink-0`}>{b.icon}</div>
+                <div>{b.label}</div>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* Divider */}
+          <div className="h-px bg-brand-lt mb-6" />
+
+          {/* Government logos */}
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}>
+            <p className="text-[10px] font-extrabold tracking-[0.2em] uppercase text-soft mb-4 text-center">
+              Government Approved & Accredited
+            </p>
+            <div className="flex items-center justify-center gap-5">
+              <Image src="/images1.png" width={200} height={80} alt="NSW Government" className="h-11 w-auto object-contain" />
+              <div className="w-px h-8 bg-brand-lt" />
+              <Image src="/image2.webp" width={200} height={80} alt="National Quality Standard" className="h-11 w-auto object-contain" />
+            </div>
+          </motion.div>
         </div>
+
+        {/* ===== DESKTOP HERO ===== */}
+        <div className="hidden lg:grid grid-cols-2 gap-20 py-24 items-center">
+          <div className="flex flex-col">
+            <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}
+              className="inline-flex items-center gap-2 bg-brand-lt border border-brand/20 text-brand text-[11px] font-extrabold tracking-[0.2em] uppercase px-5 py-2 rounded-full w-fit mb-8"
+            >
+              <Sparkles className="w-3 h-3" />
+              Enrolments Now Open for 2026
+            </motion.div>
+
+            <motion.h1 initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
+              className="font-display text-7xl font-black text-dark leading-[1.05] mb-6"
+            >
+              Where Little Learners{" "}
+              <span className="text-brand">Grow, Play</span> &{" "}
+              <span className="relative inline-block">
+                Shine
+                <svg className="absolute -bottom-2 left-0 w-full h-3 text-brand/20" viewBox="0 0 100 10" preserveAspectRatio="none">
+                  <path d="M0 5 Q 25 0, 50 5 T 100 5" fill="none" stroke="currentColor" strokeWidth="8" strokeLinecap="round" />
+                </svg>
+              </span>
+            </motion.h1>
+
+            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
+              className="text-mid text-xl mb-8 max-w-lg leading-relaxed"
+            >
+              We provide nurturing childcare services and play-based early learning in Wahroonga to help your child feel safe, confident, and excited to explore the world.
+            </motion.p>
+
+            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }}
+              className="flex items-center gap-5 mb-10"
+            >
+              <BookTourButton className="bg-brand text-white font-display font-black px-10 py-5 rounded-2xl hover:bg-brand-dk transition-all hover:scale-105 shadow-xl shadow-brand/30 text-lg">
+                Book a Tour
+              </BookTourButton>
+              <span className="text-base font-bold text-dark">
+                <span className="text-brand font-black">3 Days FREE*</span><br />for new families
+              </span>
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }}
+              className="flex items-center gap-3 overflow-x-auto no-scrollbar pb-2"
+            >
+              {[
+                { icon: <Star className="w-5 h-5 fill-gold" />, bg: "bg-gold/10", color: "text-gold", top: "5.0 Google Rating", bottom: <div className="flex gap-0.5 text-gold">{[...Array(5)].map((_, i) => <Star key={i} className="w-2.5 h-2.5 fill-gold" />)}</div> },
+                { icon: <Clock className="w-5 h-5" />, bg: "bg-brand-lt", color: "text-brand", top: "Experience", bottom: "10+ Years" },
+                { icon: <ShieldCheck className="w-5 h-5" />, bg: "bg-brand/10", color: "text-brand", top: "CCS Approved", bottom: "Govt. Subsidy" },
+                // { icon: <GraduationCap className="w-5 h-5" />, bg: "bg-brand-lt", color: "text-brand", top: "NQS Meeting", bottom: "Quality Focus" },
+              ].map((b, i) => (
+                <div key={i} className="flex items-center gap-3 bg-white border border-brand-lt px-4 py-2.5 rounded-xl shadow-sm shrink-0">
+                  <div className={`w-8 h-8 ${b.bg} rounded-lg flex items-center justify-center ${b.color}`}>{b.icon}</div>
+                  <div>
+                    <div className="text-[10px] font-black text-dark leading-none mb-0.5">{b.top}</div>
+                    <div className="text-[9px] font-bold text-soft uppercase tracking-widest leading-none">{typeof b.bottom === 'string' ? b.bottom : b.bottom}</div>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+
+            <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5 }}
+              className="pt-8 mt-8 border-t border-brand-lt"
+            >
+              <p className="text-[11px] font-extrabold tracking-[0.2em] uppercase text-soft mb-5">
+                Government Approved & Accredited
+              </p>
+              <div className="flex items-center gap-6">
+                <Image src="/images1.png" width={200} height={80} alt="NSW Government" className="h-20 w-auto object-contain" />
+                <div className="w-px h-10 bg-brand-lt" />
+                <Image src="/image2.webp" width={200} height={80} alt="National Quality Standard" className="h-20 w-auto object-contain" />
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Desktop slider */}
+          <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.6 }} className="relative"
+          >
+            <div className="relative z-10 rounded-[2.5rem] overflow-hidden shadow-2xl shadow-brand/10 border-4 border-brand-lt aspect-[4/3]">
+              <AnimatePresence mode="wait">
+                <motion.img key={currentSlide} src={slides[currentSlide]}
+                  alt={`Little Lion centre ${currentSlide + 1}`}
+                  className="w-full h-full object-cover absolute inset-0"
+                  initial={{ opacity: 0, scale: 1.05 }} animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }} transition={{ duration: 0.7 }} referrerPolicy="no-referrer"
+                />
+              </AnimatePresence>
+              <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-20">
+                {slides.map((_, i) => (
+                  <button key={i} onClick={() => setCurrentSlide(i)}
+                    className={`h-2 rounded-full transition-all duration-500 ${currentSlide === i ? "w-8 bg-white" : "w-2 bg-white/50 hover:bg-white/80"}`}
+                  />
+                ))}
+              </div>
+            </div>
+            <div className="absolute -top-6 -right-6 z-20 bg-brand p-5 rounded-2xl shadow-2xl text-white border-4 border-white">
+              <div className="font-display text-3xl font-black mb-0.5">10+</div>
+              <div className="text-[9px] font-bold uppercase tracking-widest leading-tight opacity-90">Years of<br />Excellence</div>
+            </div>
+            <div className="absolute -bottom-4 -left-4 z-20 bg-gold p-4 rounded-2xl shadow-2xl text-white border-4 border-white">
+              <div className="font-display text-lg font-black leading-tight">3 FREE</div>
+              <div className="text-[9px] font-bold uppercase tracking-wider opacity-90">Days Offer</div>
+            </div>
+          </motion.div>
+        </div>
+
       </div>
     </section>
   );
 };
+
 
 
 
