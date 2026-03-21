@@ -43,8 +43,7 @@ const Hero = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
 
         {/* ===== MOBILE HERO ===== */}
-        <div className="lg:hidden py-8 sm:py-12">
-          {/* Badge */}
+        <div className="lg:hidden py-8 sm:py-10">
           <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }}
             className="inline-flex items-center gap-2 bg-brand-lt border border-brand/20 text-brand text-[10px] font-extrabold tracking-[0.2em] uppercase px-4 py-1.5 rounded-full mb-5"
           >
@@ -52,68 +51,37 @@ const Hero = () => {
             Enrolments Now Open for 2026
           </motion.div>
 
-          {/* Heading */}
           <motion.h1 initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.1 }}
             className="font-display text-[2.1rem] sm:text-5xl font-black text-dark leading-[1.12] mb-4"
           >
             Where Little Learners <span className="text-brand">Grow, Play</span> & Shine
           </motion.h1>
 
-          {/* Description */}
           <motion.p initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.15 }}
             className="text-mid text-[15px] sm:text-base leading-relaxed mb-6 max-w-md"
           >
             We provide nurturing childcare services and play-based early learning in Wahroonga to help your child feel safe, confident, and excited to explore the world.
           </motion.p>
 
-          {/* Mobile image slider */}
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
-            className="relative -mx-4 sm:mx-0 mb-8"
-          >
-            <div className="relative sm:rounded-2xl overflow-hidden  aspect-[16/9]">
-              <AnimatePresence mode="wait">
-                <motion.img key={`m-${currentSlide}`} src={slides[currentSlide]}
-                  alt={`Little Lion centre ${currentSlide + 1}`}
-                  className="w-full h-full object-cover absolute inset-0 px-2 rounded-2xl"
-                  initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5 }} referrerPolicy="no-referrer"
-                />
-              </AnimatePresence>
-              {/* Gradient overlay bottom */}
-              {/* <div className="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-black/40 to-transparent" /> */}
-              {/* Dots */}
-              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
-                {slides.map((_, i) => (
-                  <button key={i} onClick={() => setCurrentSlide(i)}
-                    className={`h-1.5 rounded-full transition-all duration-500 ${currentSlide === i ? "w-6 bg-white" : "w-1.5 bg-white/50"}`}
-                  />
-                ))}
-              </div>
-              {/* Offer badge */}
-              <div className="absolute top-3 right-3 bg-gold px-3 py-1.5 rounded-xl text-white shadow-lg z-20">
-                <div className="font-display text-xs font-black">3 FREE Days</div>
-              </div>
-            </div>
-          </motion.div>
-
           {/* CTA row */}
-          <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
-            className="flex items-center gap-5 mb-8"
+          <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.2 }}
+            className="flex items-center gap-5 mb-6"
           >
             <BookTourButton className="bg-brand text-white font-display font-black px-7 py-4 rounded-2xl shadow-xl shadow-brand/30 text-base shrink-0">
               Book a Tour
             </BookTourButton>
             <span className="text-sm font-bold text-dark leading-snug">
-              <span className="text-brand font-black">3 Days FREE*</span><br />for new families
+              <span className="text-brand font-black">CCS 3-Day Guarantee</span><br />for Families
             </span>
           </motion.div>
 
+      
           {/* Divider */}
-          <div className="h-px bg-brand-lt mb-6" />
+          <div className="h-px bg-brand-lt mb-5" />
 
-          {/* Trust badges - 2x2 grid */}
+          {/* Trust badges */}
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.3 }}
-            className="grid grid-cols-2 gap-y-5 gap-x-4 mb-6"
+            className="grid grid-cols-2 gap-y-4 gap-x-4 mb-5"
           >
             {[
               { icon: <Star className="w-5 h-5 fill-gold" />, bg: "bg-gold/10", color: "text-gold", label: <><div className="flex gap-0.5 mb-0.5">{[...Array(5)].map((_, i) => <Star key={i} className="w-2.5 h-2.5 fill-gold text-gold" />)}</div><div className="text-[11px] font-black text-dark">5.0 Google Rating</div></> },
@@ -128,24 +96,53 @@ const Hero = () => {
             ))}
           </motion.div>
 
-          {/* Divider */}
-          <div className="h-px bg-brand-lt mb-6" />
+          <div className="h-px bg-gray-300 mb-5" />
 
           {/* Government logos */}
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }}>
             <p className="text-[10px] font-extrabold tracking-[0.2em] uppercase text-soft mb-4 text-center">
               Government Approved & Accredited
             </p>
-            <div className="flex items-center justify-center gap-5">
-              <Image src="/images1.png" width={200} height={80} alt="NSW Government" className="h-11 w-auto object-contain" />
-              <div className="w-px h-8 bg-brand-lt" />
-              <Image src="/image2.webp" width={200} height={80} alt="National Quality Standard" className="h-11 w-auto object-contain" />
+            <div className="flex justify-center items-center gap-5">
+              <Image src="/images1.png" width={200} height={80} alt="NSW Government" className="h-12 w-14" />
+              <div className="w-px h-12 bg-gray-300" />
+              <Image src="/image2.webp" width={200} height={80} alt="National Quality Standard" className="h-12 w-14" />
+            </div>
+          </motion.div>
+
+              {/* Mobile image slider - after CTA like reference */}
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.25 }}
+            className="relative -mx-4 sm:mx-0 mb-6 py-8 px-2"
+          >
+            <div className="relative sm:rounded-2xl overflow-hidden aspect-[16/9]">
+              <AnimatePresence mode="wait">
+                <motion.img key={`m-${currentSlide}`} src={slides[currentSlide]}
+                  alt={`Little Lion centre ${currentSlide + 1}`}
+                  className="w-full h-full object-cover absolute inset-0 rounded-2xl"
+                  initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }} referrerPolicy="no-referrer"
+                />
+              </AnimatePresence>
+              <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-20">
+                {slides.map((_, i) => (
+                  <button key={i} onClick={() => setCurrentSlide(i)}
+                    className={`h-1.5 rounded-full transition-all duration-500 ${currentSlide === i ? "w-6 bg-white" : "w-1.5 bg-white/50"}`}
+                  />
+                ))}
+              </div>
+              {/* CCS offer floating badge */}
+              <div className="absolute bottom-3 right-3 bg-white rounded-xl px-3 py-2 shadow-lg z-20 text-center">
+                <Heart className="w-4 h-4 text-brand mx-auto mb-0.5" />
+                <div className="font-display text-xs font-black text-brand leading-tight">CCS 3-Day</div>
+                <div className="font-display text-[10px] font-black text-dark leading-tight">GUARANTEE</div>
+                <div className="text-[8px] text-soft italic">*T&Cs Apply</div>
+              </div>
             </div>
           </motion.div>
         </div>
 
         {/* ===== DESKTOP HERO ===== */}
-        <div className="hidden lg:grid grid-cols-2 gap-20 py-24 items-center">
+        <div className="hidden lg:grid grid-cols-2 gap-20 py-20 items-center">
           <div className="flex flex-col">
             <motion.div initial={{ opacity: 0, x: -20 }} animate={{ opacity: 1, x: 0 }}
               className="inline-flex items-center gap-2 bg-brand-lt border border-brand/20 text-brand text-[11px] font-extrabold tracking-[0.2em] uppercase px-5 py-2 rounded-full w-fit mb-8"
@@ -180,7 +177,7 @@ const Hero = () => {
                 Book a Tour
               </BookTourButton>
               <span className="text-base font-bold text-dark">
-                <span className="text-brand font-black">3 Days FREE*</span><br />for new families
+                <span className="text-brand font-black">CCS 3-Day Guarantee</span><br />for Families
               </span>
             </motion.div>
 
@@ -191,13 +188,12 @@ const Hero = () => {
                 { icon: <Star className="w-5 h-5 fill-gold" />, bg: "bg-gold/10", color: "text-gold", top: "5.0 Google Rating", bottom: <div className="flex gap-0.5 text-gold">{[...Array(5)].map((_, i) => <Star key={i} className="w-2.5 h-2.5 fill-gold" />)}</div> },
                 { icon: <Clock className="w-5 h-5" />, bg: "bg-brand-lt", color: "text-brand", top: "Experience", bottom: "10+ Years" },
                 { icon: <ShieldCheck className="w-5 h-5" />, bg: "bg-brand/10", color: "text-brand", top: "CCS Approved", bottom: "Govt. Subsidy" },
-                // { icon: <GraduationCap className="w-5 h-5" />, bg: "bg-brand-lt", color: "text-brand", top: "NQS Meeting", bottom: "Quality Focus" },
               ].map((b, i) => (
                 <div key={i} className="flex items-center gap-3 bg-white border border-brand-lt px-4 py-2.5 rounded-xl shadow-sm shrink-0">
                   <div className={`w-8 h-8 ${b.bg} rounded-lg flex items-center justify-center ${b.color}`}>{b.icon}</div>
                   <div>
                     <div className="text-[10px] font-black text-dark leading-none mb-0.5">{b.top}</div>
-                    <div className="text-[9px] font-bold text-soft uppercase tracking-widest leading-none">{typeof b.bottom === 'string' ? b.bottom : b.bottom}</div>
+                    <div className="text-[9px] font-bold text-soft uppercase tracking-widest leading-none">{b.bottom}</div>
                   </div>
                 </div>
               ))}
@@ -242,9 +238,12 @@ const Hero = () => {
               <div className="font-display text-3xl font-black mb-0.5">10+</div>
               <div className="text-[9px] font-bold uppercase tracking-widest leading-tight opacity-90">Years of<br />Excellence</div>
             </div>
-            <div className="absolute -bottom-4 -left-4 z-20 bg-gold p-4 rounded-2xl shadow-2xl text-white border-4 border-white">
-              <div className="font-display text-lg font-black leading-tight">3 FREE</div>
-              <div className="text-[9px] font-bold uppercase tracking-wider opacity-90">Days Offer</div>
+            {/* CCS floating badge */}
+            <div className="absolute -bottom-4 -left-4 z-20 bg-white rounded-2xl p-4 shadow-2xl border-4 border-brand-lt text-center">
+              <Heart className="w-5 h-5 text-brand mx-auto mb-1" />
+              <div className="font-display text-sm font-black text-brand leading-tight">CCS 3-Day</div>
+              <div className="font-display text-xs font-black text-dark leading-tight">GUARANTEE</div>
+              <div className="text-[8px] text-soft italic">*T&Cs Apply</div>
             </div>
           </motion.div>
         </div>
@@ -257,6 +256,7 @@ const Hero = () => {
 
 
 
+
 const Philosophy = () => {
   return (
     <section className="bg-white section-padding relative overflow-hidden" id="philosophy">
@@ -265,7 +265,7 @@ const Philosophy = () => {
           <div className="order-2 lg:order-1">
             <span className="inline-block text-[13px] font-black tracking-[0.1em] uppercase text-brand mb-4">Little Lion Early Learning Centre | Wahroonga</span>
             <h2 className="font-display text-5xl md:text-6xl font-black text-brand leading-tight mb-8">
-              Kindergarten in Wahroonga
+              Childcare in Wahroonga
             </h2>
 
             <div className="inline-flex items-center gap-3 bg-brand-lt px-6 py-3 rounded-2xl mb-10 border border-brand/10">
@@ -282,7 +282,7 @@ const Philosophy = () => {
               {[
                 "Keeping children safe always comes first. All of our team are committed to uphold the highest standards of child safety in our Wahroonga childcare centre.",
                 "From the moment you step inside, you\u2019ll be part of a community where children feel safe, happy, and you will feel connected every day at the best preschool near me.",
-                "Discover our centre that feels like home and where each day is exciting, from our nurturing nursery to our leading 2 year Preschool program. Your child deserves the best kindergarten in Wahroonga.",
+                "Discover our centre that feels like home and where each day is exciting, from our nurturing nursery to our leading 2 year Preschool program. Your child deserves the best childcare in Wahroonga.",
                 "Our experienced and passionate Educators are dedicated to helping children learn and grow in a welcoming and supportive environment. We are so proud of them and the amazing centre they have created."
               ].map((text, i) => (
                 <li key={i} className="flex gap-4 items-start group">
@@ -851,7 +851,7 @@ const WhyChooseUs = () => {
   const features = [
     { icon: <GraduationCap className="w-7 h-7" />, title: "Qualified Educators", desc: "Cert III minimum across all staff — experienced, genuinely passionate, and dedicated.", accent: "from-brand/20 to-brand-lt" },
     { icon: <BookOpen className="w-7 h-7" />, title: "School Readiness", desc: "We prepare children with the skills and independence needed for a smooth transition.", accent: "from-brand-lt to-brand/10" },
-    { icon: <Heart className="w-7 h-7" />, title: "Quality Care", desc: "Our 3 Free Days offer and full CCS approval make exceptional learning accessible.", accent: "from-brand/20 to-brand-lt" },
+    { icon: <Heart className="w-7 h-7" />, title: "Quality Care", desc: "Our CCS 3-Day Guarantee and full CCS approval make exceptional learning accessible.", accent: "from-brand/20 to-brand-lt" },
     { icon: <Sparkles className="w-7 h-7" />, title: "Parent App", desc: "Real-time photos, meal logs, and daily observations via the Xplor parent app.", accent: "from-brand-lt to-brand/10" },
     { icon: <Users className="w-7 h-7" />, title: "Familiar Faces", desc: "Low staff turnover means your child bonds with the same caring educators every day.", accent: "from-brand/20 to-brand-lt" },
     { icon: <Leaf className="w-7 h-7" />, title: "Outdoor Spaces", desc: "Spacious sustainable gardens where children explore nature and move freely.", accent: "from-brand-lt to-brand/10" }
@@ -1012,7 +1012,7 @@ const OffersSection = () => {
               </div>
               <div className="flex justify-between items-center mb-6">
                 <span className="text-soft font-bold text-xs uppercase tracking-wider">Bonus</span>
-                <span className="text-gold font-black text-xl">3 Free Days</span>
+                <span className="text-gold font-black text-xl">CCS 3-Day Guarantee</span>
               </div>
               <BookTourButton className="block w-full bg-brand text-white font-display font-black text-center py-4 rounded-xl hover:bg-brand-dk transition-all text-sm">
                 Claim CCS Offer
@@ -1306,7 +1306,7 @@ const FAQ = () => {
 
   const faqs = [
     { q: "What are your operating hours?", a: "We are open Monday to Friday from 7:00am to 6:00pm, accommodating early starts and late finishes for working North Shore families." },
-    { q: "Do you offer the Child Care Subsidy (CCS)?", a: "Yes \u2014 Little Lion Wahroonga is a fully CCS-approved childcare centre. Most eligible families can receive 50\u201390% off their daily fee through MyGov. We also offer 3 Free Days for new enrolments." },
+    { q: "Do you offer the Child Care Subsidy (CCS)?", a: "Yes — Little Lion Wahroonga is a fully CCS-approved childcare centre. Most eligible families can receive 50–90% off their daily fee through MyGov. We also offer a CCS 3-Day Guarantee for families." },
     { q: "What ages do you cater for?", a: "We care for children from 6 weeks to 6 years across four dedicated rooms: Cubs (0\u20132), Simba (2\u20133), Leo (3\u20134), and Lion (5\u20136 years)." },
     { q: "What is your staff-to-child ratio?", a: "We strictly adhere to and often exceed the National Quality Standard ratios to ensure every child receives personalised attention, care, and safety throughout the day." },
     { q: "Are meals provided?", a: "Yes \u2014 we provide 5 freshly prepared, nutritious meals throughout the day including breakfast, morning tea, lunch, afternoon tea, and a late snack. All dietary requirements and allergies are fully catered for." },
