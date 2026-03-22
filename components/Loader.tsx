@@ -1,17 +1,70 @@
+// "use client";
+// import { useState, useEffect } from "react";
+// import { motion, AnimatePresence } from "motion/react";
+// import Image from "next/image";
+
+// export default function Loader() {
+//   const [done, setDone] = useState(false);
+
+//   useEffect(() => {
+//     // Dismiss after 1.2 seconds — fast enough for ad landing pages
+//     const timeout = setTimeout(() => setDone(true), 1200);
+//     return () => clearTimeout(timeout);
+//   }, []);
+
+//   return (
+//     <AnimatePresence>
+//       {!done && (
+//         <motion.div
+//           key="loader"
+//           exit={{ opacity: 0 }}
+//           transition={{ duration: 0.3, ease: "easeOut" }}
+//           className="fixed inset-0 z-200 flex flex-col items-center justify-center bg-white"
+//         >
+//           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--color-brand-lt)_0%,_white_70%)]" />
+
+//           <div className="relative z-10 flex flex-col items-center">
+//             <motion.div
+//               animate={{ scale: [0.9, 1.05, 1] }}
+//               transition={{ duration: 0.8, ease: "easeOut" }}
+//               className="mb-6"
+//             >
+//               <Image
+//                 src="/logo.png"
+//                 width={120}
+//                 height={120}
+//                 alt="Little Lion"
+//                 className="w-20 h-20 md:w-24 md:h-24 drop-shadow-xl"
+//                 priority
+//               />
+//             </motion.div>
+
+//             <motion.div
+//               initial={{ opacity: 0, y: 10 }}
+//               animate={{ opacity: 1, y: 0 }}
+//               transition={{ delay: 0.2, duration: 0.4 }}
+//               className="text-center"
+//             >
+//               <h1 className="font-display text-2xl md:text-3xl font-black text-dark tracking-tight">
+//                 Little <span className="text-brand">Lion</span>
+//               </h1>
+//               <p className="text-soft text-xs font-bold tracking-[0.25em] uppercase mt-1">
+//                 Early Learning Centre
+//               </p>
+//             </motion.div>
+//           </div>
+//         </motion.div>
+//       )}
+//     </AnimatePresence>
+//   );
+// }
+
 "use client";
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import Image from "next/image";
 
-const funFacts = [
-  "Preparing the playground…",
-  "Gathering the crayons…",
-  "Waking up the butterflies…",
-  "Planting seeds of curiosity…",
-  "Mixing the finger paints…",
-  "Counting the stars…",
-  "Building block towers…",
-];
+
 
 const FloatingEmoji = ({
   emoji,
@@ -61,18 +114,12 @@ export default function Loader() {
         // Slightly randomized increments for organic feel
         return Math.min(prev + 1.2 + Math.random() * 0.6, 100);
       });
-    }, 70);
+    }, 20);
 
     return () => clearInterval(interval);
   }, []);
 
-  // Rotate fun facts
-  useEffect(() => {
-    const factTimer = setInterval(() => {
-      setFactIndex((prev) => (prev + 1) % funFacts.length);
-    }, 2000);
-    return () => clearInterval(factTimer);
-  }, []);
+  
 
   // Dismiss after progress completes
   useEffect(() => {
@@ -95,7 +142,7 @@ export default function Loader() {
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_var(--color-brand-lt)_0%,_white_70%)]" />
 
           {/* Floating emojis */}
-          <div className="absolute inset-0 flex items-end justify-center">
+          {/* <div className="absolute inset-0 flex items-end justify-center">
             <FloatingEmoji emoji="🌟" delay={0} x={-120} duration={4} />
             <FloatingEmoji emoji="🎨" delay={0.8} x={-40} duration={3.5} />
             <FloatingEmoji emoji="🦋" delay={1.5} x={50} duration={4.2} />
@@ -104,7 +151,7 @@ export default function Loader() {
             <FloatingEmoji emoji="🎵" delay={1.8} x={90} duration={3.2} />
             <FloatingEmoji emoji="🌻" delay={2.8} x={-150} duration={4} />
             <FloatingEmoji emoji="✏️" delay={3.2} x={160} duration={3.6} />
-          </div>
+          </div> */}
 
           {/* Main content */}
           <div className="relative z-10 flex flex-col items-center px-6">
@@ -160,7 +207,7 @@ export default function Loader() {
             </motion.div>
 
             {/* Progress bar */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, width: 0 }}
               animate={{ opacity: 1, width: "100%" }}
               transition={{ delay: 0.5 }}
@@ -172,7 +219,6 @@ export default function Loader() {
                   style={{ width: `${progress}%` }}
                   transition={{ ease: "linear" }}
                 >
-                  {/* Shimmer effect */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent animate-[shimmer_1.5s_infinite]" />
                 </motion.div>
               </div>
@@ -184,26 +230,10 @@ export default function Loader() {
                   {Math.round(progress)}%
                 </span>
               </div>
-            </motion.div>
-
-            {/* Rotating fun facts */}
-            <div className="h-6 overflow-hidden">
-              <AnimatePresence mode="wait">
-                <motion.p
-                  key={factIndex}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -10 }}
-                  transition={{ duration: 0.3 }}
-                  className="text-sm text-mid font-medium text-center"
-                >
-                  {funFacts[factIndex]}
-                </motion.p>
-              </AnimatePresence>
-            </div>
+            </motion.div> */}
 
             {/* Bouncing dots */}
-            <div className="flex gap-2 mt-6">
+            <div className="flex gap-2 ">
               {[0, 1, 2].map((i) => (
                 <motion.div
                   key={i}
